@@ -1,0 +1,26 @@
+﻿@{
+    Layout = null;
+}
+
+@model blog1.Models.RecentPost
+<div class="posts-wrap">
+    <h3>Recent Posts</h3>
+    <ul>
+        @foreach (var item in Model.items)
+        {
+            <li>
+                <p class="date">@item.date.ToString("D")</p>
+                <h2><p> @Html.ActionLink(@item.text, "Index", "Home", new { titlenew = @item.url }, null)</p></h2>
+                @if (@HttpContext.Current.User.Identity.Name == "Admin")
+                {
+                    <form action="@Url.Action("DeletePost", "Home", new { title = @item.url })" method="post">
+                        <div id="comment_form">
+                            <input type="submit" name="Submit" value=" delete " class="submit_btn" />
+                        </div>
+                    </form>
+                }
+            </li>
+        }
+
+    </ul>
+</div>

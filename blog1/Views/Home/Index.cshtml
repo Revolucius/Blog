@@ -1,0 +1,36 @@
+﻿@using blog1.Models
+@model Article
+
+<div class="wrap-article">
+    <h2>@Model.post.title</h2>
+    <p class="date"><span>@Model.post.date.ToString("D")</span><span>@Model.post.date.ToString("hh:mm")</span></p>
+    <div class="text-block">
+       <p> @Model.post.body</p>
+    </div>
+</div>
+<div class="wrap-comments">
+    <h2>Comments</h2>
+    <ul class="list-comment">
+      @for (int i = 0; i < Model.comments.Count;i++ )
+      {
+            <li>
+                <div class="avatar"><img src="~/content/images/avatar-comment.png" alt="" /></div>
+                <div class="comment-text">
+                    <a href="#">@Model.comments[i].username</a>
+                  <p class="date"><span>@Model.comments[i].date.ToString("D")</span><span>@Model.comments[i].date.ToString("hh:mm")</span></p>
+                    <p>@Model.comments[i].comments</p>
+                    @if (@HttpContext.Current.User.Identity.Name == "Admin")
+                    {
+                        <form action="@Url.Action("DeleteComment", "Home", new { commentid = @Model.comments[i].id, title=@Model.post.title })" method="post">
+                            <div id="comment_form">
+                                <input type="submit" name="Submit" value=" delete " class="submit_btn" />
+                            </div>
+                        </form>
+                    }
+                </div>
+            </li>
+      }
+
+    </ul>
+  @Html.Partial("AddComment", new AddComment() {title=Model.post.title})
+</div>

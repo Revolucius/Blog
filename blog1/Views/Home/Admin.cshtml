@@ -1,0 +1,19 @@
+﻿@model blog1.Models.AdminAccess
+<div class="add-comment">
+    @if (@HttpContext.Current.User.Identity.Name != "Admin")
+    {
+        <form action="@Url.Action("Admin","Home")" method="post">
+            <h1>Name</h1>
+            @Html.TextAreaFor(m => m.Name, new { @class="txt-title" }) 
+            <h1>Password</h1>
+            @Html.TextAreaFor(m => m.Password, new {  @class="txt-title"})
+            <div class="wrap-btn">
+                <button class="btn-save">Enter</button>>
+                </div>
+            </form>
+    }
+    else
+    {
+        <h1>Access Granted!</h1> 
+    }
+</div>

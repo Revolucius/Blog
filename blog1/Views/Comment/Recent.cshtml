@@ -1,0 +1,18 @@
+﻿@{
+    Layout = null;
+}
+
+@model blog1.Models.RecentComment
+<div class="posts-wrap color">
+    <h3>Recent Comments</h3>
+    <ul>
+        @foreach (var item in Model.items)
+        {
+            <li>
+                <p class="date">@item.date.ToString("D") <span>@item.date.ToString("hh:mm")</span></p>
+                <h2><p> @Html.ActionLink(@item.text, "CommentLink", "Home", new { title = @item.commentid }, null)</p></h2>
+              
+            </li>
+        }
+    </ul>
+</div>

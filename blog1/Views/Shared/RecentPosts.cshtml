@@ -1,0 +1,17 @@
+﻿@{
+    Layout = null;
+}
+@model blog1.Models.RecentPost
+<div class="posts-wrap">
+    <h3>Recent Posts</h3>
+    <ul>
+        @foreach (var item in Model.items)
+        {
+            <li>
+                <p class="date">@item.date.ToString("D")</p>
+                <p class="post"><a href="@item.url">@item.text</a></p>
+            </li>
+        }
+
+    </ul>
+</div>

@@ -1,0 +1,17 @@
+﻿@{
+    Layout = null;
+}
+
+@model blog1.Models.AddComment
+           <div class="add-comment">
+    <form action="@Url.Action("Index", "Home")" method="post">
+             @Html.TextAreaFor(m=>m.comments, new { placeholder = "Your comment", @class="txt-area"})
+        @Html.TextBoxFor(m=>m.username)
+        
+               <div class="wrap-btn">
+        
+                   <button class="btn-save">Save changes</button>
+                   </div>
+        @Html.TextAreaFor(m => m.title, new { placeholder = "Your comment", @class = "txt-area", style = "visibility: hidden" })
+        </form>
+</div>
